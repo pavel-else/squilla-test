@@ -5,7 +5,6 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    '@vue/airbnb',
   ],
   parserOptions: {
     parser: 'babel-eslint',
@@ -25,4 +24,11 @@ module.exports = {
       },
     },
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
 };

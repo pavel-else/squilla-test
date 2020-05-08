@@ -1,32 +1,24 @@
 <template>
   <div class="mian-page">
+    <h1 class="main-page__title">Offers</h1>
+
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">MIN LOAN AMOUNT</th>
+          <th scope="col">MAX LOAN AMOUNT</th>
+          <th scope="col">INTEREST RATE</th>
+          <th scope="col">REPAYMENT FREQUENCY</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr v-for="(offer, index) in offers" :key="offer.id">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ offer.minLoanAmount }} {{ offer.currency.toUpperCase() }}</td>
+          <td>{{ offer.maxLoanAmount }} {{ offer.currency.toUpperCase() }}</td>
+          <td>{{ offer.rate }}%</td>
+          <td>{{ offer.repaimentFrequence }}</td>
         </tr>
       </tbody>
     </table>
@@ -41,6 +33,11 @@ export default {
   name: 'Home',
   components: {
     // HelloWorld,
+  },
+  computed: {
+    offers() {
+      return this.$store.getters.offers;
+    },
   },
 };
 </script>
