@@ -1,14 +1,42 @@
+import APIServer from '@/APIServer/APIServer';
+
+const server = new APIServer();
+const sendRequest = (methodName, data) => server.request(methodName, data);
+
 export default {
   state: {
-    offers: [
-      { id: 123123, uid: 'x100', minLoanAmount: 200, maxLoanAmount: 400, currency: 'pax', rate: 6, repaimentFrequence: 'oneTIme' },
-      { id: 234235, uid: 'x200', minLoanAmount: 200, maxLoanAmount: 300, currency: 'usdc', rate: 8, repaimentFrequence: 'monthly' },
-      { id: 364364, uid: 'x300', minLoanAmount: 300, maxLoanAmount: 500, currency: 'usdc', rate: 7, repaimentFrequence: 'oneTIme' },
-    ],
+    offers: [],
   },
   getters: {
     offers(state) {
       return state.offers;
     },
   },
+  mutations: {
+    offers(state, offers) {
+      state.offers = offers;
+    },
+  },
+  actions: {
+    getOffers({ commit }) {
+      sendRequest('getOffers', {})
+        .then((response) => {
+          commit('offers', response.data);
+        })
+    },
+    async createOffer({ dispatch }, offer) {
+      await sendRequest('createOffer', offer);
+      dispatch('getOffers');
+    },
+    async deleteOffer({ getters, commit, dispatch }, offerId) {
+      // Сначала быстро обновляем данные в локальном списке,
+      // а потом, когда придет ответ с сервера, запросим новые атуальные данные
+      const offers = getters.offers;
+      const newOffers = offers.filter(i => i.id !== offerId);
+      commit('offers', newOffers);
+
+      await sendRequest('deleteOffer', offerId);
+      dispatch('getOffers');
+    }
+  }
 };
