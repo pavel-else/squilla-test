@@ -56,8 +56,8 @@
         </tbody>
       </table>
 
-      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="submit" v-if="mod === 'create'">Create</button>
-      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="submit" v-else>Update</button>
+      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="create" v-if="mod === 'create'">Create</button>
+      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="update" v-else>Update</button>
     </div>
   </div>
 </template>
@@ -76,7 +76,7 @@ export default {
     }
 
     const offers = this.$store.getters.offers;
-    const offer = offers.find(i => i.id = this.$route.params.id);
+    const offer = offers.find((i) => i.id === parseInt(this.$route.params.id));
 
     this.offer = { ...offer };  
     this.mod = 'update'; 
@@ -100,14 +100,22 @@ export default {
     };
   },
   methods: {
-    submit() {
+    create() {
       if (this.isValidForm) {
         this.$store.dispatch('createOffer', this.offer)
           .then(() => {
             this.$router.push({ name: 'Home' });
           });
       }
-    }
+    },
+    update() {
+      if (this.isValidForm) {
+        this.$store.dispatch('updateOffer', this.offer)
+          .then(() => {
+            this.$router.push({ name: 'Home' });
+          });
+      }
+    },
   },
   computed: {
     isValidForm() {

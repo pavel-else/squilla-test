@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="offers-table__tr" v-for="(offer, index) in offers" :key="offer.id" @click="edit(offer)">
+          <tr class="offers-table__tr" v-for="(offer, index) in offers" :key="offer.id" @click="edit(offer.id)">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ offer.minLoanAmount }} {{ offer.currency }}</td>
             <td>{{ offer.maxLoanAmount }} {{ offer.currency }}</td>

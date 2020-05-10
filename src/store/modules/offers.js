@@ -28,6 +28,10 @@ export default {
       await sendRequest('createOffer', offer);
       dispatch('getOffers');
     },
+    async updateOffer({ dispatch }, offer) {
+      await sendRequest('updateOffer', offer);
+      dispatch('getOffers');
+    },
     async deleteOffer({ getters, commit, dispatch }, offerId) {
       // Сначала быстро обновляем данные в локальном списке,
       // а потом, когда придет ответ с сервера, запросим новые атуальные данные
