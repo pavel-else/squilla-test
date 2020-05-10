@@ -1,17 +1,18 @@
 <template>
   <div class="page page--main">
     <div class="container">
-    <h1 class="page__title">Offers</h1>
-
+      <div class="page__wrap">
+        <h1 class="page__title">Offers</h1>
+        <button class="btn btn-outline-primary page__button-create">Create offer</button>
+      </div>
       <table class="table offers-table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">MIN LOAN AMOUNT</th>
-            <th scope="col">MAX LOAN AMOUNT</th>
-            <th scope="col">INTEREST RATE</th>
-            <th scope="col">REPAYMENT FREQUENCY</th>
-            <th class="offers-table__th offers-table__th--tools"></th>
+            <th class="offers-table__th" scope="col"></th>
+            <th class="offers-table__th" scope="col">MIN LOAN AMOUNT</th>
+            <th class="offers-table__th" scope="col">MAX LOAN AMOUNT</th>
+            <th class="offers-table__th" scope="col">INTEREST RATE</th>
+            <th class="offers-table__th" scope="col">REPAYMENT FREQUENCY</th>
           </tr>
         </thead>
         <tbody>
@@ -21,13 +22,6 @@
             <td>{{ offer.maxLoanAmount }} {{ offer.currency }}</td>
             <td>{{ offer.rate }}%</td>
             <td>{{ offer.repaimentFrequence }}</td>
-            <td>
-              <div class="offers-table__tools">
-                <div class="offer-tools">
-                  <span class="offer-tools__btn" @click="deleteOffer(offer.id)">✕</span>
-                </div>
-              </div>
-            </td>
           </tr>
         </tbody>
       </table>
@@ -49,9 +43,6 @@ export default {
     edit(offerId) {
       this.$router.push({ name: 'Offer', params: { id: offerId }});
     },
-    deleteOffer(offerId) {
-      this.$store.dispatch('deleteOffer', offerId);
-    },
   },
   computed: {
     offers() {
@@ -62,27 +53,28 @@ export default {
 </script>
 
 <style lang="scss">
+.page__wrap {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page__title {
+  font-size: 24px;
+}
+.page__button-create {
+  height: 35px;
+  padding: 0 15px;
+}
+
 .offers-table {
-  &__th--tools {
-    min-width: 50px;
+  &__th {
+    font-size: 12px;
   }
   &__tr {
     &:hover {
       background: lightgray;
-      .offers-table__tools {
-        display: flex;
-      }
-    }
-  }
-  &__tools {
-    display: none;
-  }
-}
-
-.offer-tools {
-  display: flex;
-  &__btn {
-    &:hover {
       cursor: pointer;
     }
   }

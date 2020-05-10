@@ -40,7 +40,8 @@ export default {
       commit('offers', newOffers);
 
       await sendRequest('deleteOffer', offerId);
-      dispatch('getOffers');
-    }
+
+      await dispatch('getOffers');
+    },
   }
 };

@@ -58,6 +58,8 @@
 
       <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="create" v-if="mod === 'create'">Create</button>
       <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="update" v-else>Update</button>
+      
+      <button class="btn btn-danger" @click="deleteOffer">Delete</button>
     </div>
   </div>
 </template>
@@ -77,6 +79,10 @@ export default {
 
     const offers = this.$store.getters.offers;
     const offer = offers.find((i) => i.id === parseInt(this.$route.params.id));
+
+    if (!offer) {
+      this.$router.push({ name: 'Home' });
+    }
 
     this.offer = { ...offer };  
     this.mod = 'update'; 
@@ -111,6 +117,15 @@ export default {
     update() {
       if (this.isValidForm) {
         this.$store.dispatch('updateOffer', this.offer)
+          .then(() => {
+            this.$router.push({ name: 'Home' });
+          });
+      }
+    },
+    deleteOffer() {
+      const result = confirm('Are you sure?');
+      if (result) {
+        this.$store.dispatch('deleteOffer', this.$route.params.id)
           .then(() => {
             this.$router.push({ name: 'Home' });
           });

@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
+    <header class="app-header">
+      <div class="app-header__logo">
+        <div class="app-header__logo-text"><span>test</span></div>
+        <img class="app-header__logo-img" src="https://id.squilla.io/assets/img/logo.png" alt="squilla.loans">
+      </div>
+    </header>
     <router-view/>
   </div>
 </template>
@@ -16,16 +18,44 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.app-header {
+  height: 70px;
+  margin: 0 0 30px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  background: #339fa6;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  &__logo {
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
+  &__logo-text {
+    align-self: flex-end;
+    padding: 3px;
+    border: 1px solid #ff8c51;
+    display: flex;
+    border-radius: 2px;
+    span {
+      padding: 4px 5px 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      font-size: 8px;
+      line-height: 1;
+      font-weight: bold;
+      background: #ff8c51;
     }
+  }
+
+  &__logo-img {
+    width: 150px;
+    height: auto;
   }
 }
 </style>
