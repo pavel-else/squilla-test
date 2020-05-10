@@ -9,7 +9,7 @@ class APIServer {
   }
 
   async request(methodName, data) {
-    await wait(2000);
+    await wait(700);
 
     const response = {};
 
@@ -19,7 +19,6 @@ class APIServer {
     }
     if (methodName === 'createOffer') {
       this.offers.push(data);
-      console.log('O', this.offers);
       response.status = 'success';
       response.data = {};
     }
@@ -30,7 +29,19 @@ class APIServer {
       response.status = 'success';
       response.data = {};
     }
+    if (methodName === 'updateOffer') {
+      const offer = data;
+      const newOffers = this.offers.reduce((acc, item) => {
+        acc.push(item.id === offer.id ? offer : item);
+        return acc;
+      }, []);
 
+      this.offers = newOffers;
+
+      response.status = 'success';
+      response.data = {};
+    }
+      
     return response;
   }
 }

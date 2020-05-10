@@ -1,7 +1,8 @@
 <template>
   <div class="page page--create">
     <div class="container">
-      <h1 class="page__title">Create offer</h1>
+      <h1 class="page__title" v-if="mod === 'create'">Create offer</h1>
+      <h1 class="page__title" v-else>Update offer</h1>
 
       <table class="table create-table">
         <tbody>
@@ -55,7 +56,8 @@
         </tbody>
       </table>
 
-      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="submit">Create</button>
+      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="submit" v-if="mod === 'create'">Create</button>
+      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="submit" v-else>Update</button>
     </div>
   </div>
 </template>
@@ -64,12 +66,24 @@
 import vInput from '@/components/v-input';
 
 export default {
-  name: 'CreateOffer',
+  name: 'Offer',
   components: {
     vInput
   },
+  mounted() {
+    if (this.$route.params.id && this.$route.params.id === 'create') {
+      return;
+    }
+
+    const offers = this.$store.getters.offers;
+    const offer = offers.find(i => i.id = this.$route.params.id);
+
+    this.offer = { ...offer };  
+    this.mod = 'update'; 
+  },
   data() {
     return {
+      mod: 'create', // 'update'
       offer: {
         minLoanAmount: null,
         maxLoanAmount: null,

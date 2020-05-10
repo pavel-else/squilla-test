@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="offers-table__tr" v-for="(offer, index) in offers" :key="offer.id">
+          <tr class="offers-table__tr" v-for="(offer, index) in offers" :key="offer.id" @click="edit(offer)">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ offer.minLoanAmount }} {{ offer.currency }}</td>
             <td>{{ offer.maxLoanAmount }} {{ offer.currency }}</td>
@@ -46,6 +46,9 @@ export default {
     this.$store.dispatch('getOffers');
   },
   methods: {
+    edit(offerId) {
+      this.$router.push({ name: 'Offer', params: { id: offerId }});
+    },
     deleteOffer(offerId) {
       this.$store.dispatch('deleteOffer', offerId);
     },
