@@ -9,6 +9,17 @@
       <table class="table create-table">
         <tbody>
           <tr>
+            <td>WALLET: </td>
+            <td>
+              <select class="custom-select" v-model="offer.currency">
+                <option value="USDT">USDT</option>
+                <option value="PAX">PAX</option>
+                <option value="USDS">USDS</option>
+                <option value="DAI">DAI</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
             <td>MIN LOAN AMOUN: </td>
             <td>
               <v-input 
@@ -47,12 +58,11 @@
           <tr>
             <td>REPAYMENT FREQUENCY: </td>
             <td>
-              <v-input 
-                inClass="form-control"
-                type="string"
-                v-model.trim="offer.repaimentFrequence"
-                @valid="valid.repaimentFrequence = $event"
-              />
+              <select class="custom-select" v-model="offer.repaimentFrequence">
+                <option value="one_time">One time</option>
+                <option value="monthly">Monthly</option>
+                <option value="biweekly">Biweekly</option>
+              </select>
             </td>
           </tr>
         </tbody>
@@ -96,17 +106,17 @@ export default {
     return {
       mod: 'create', // 'update'
       offer: {
+        currency: 'USDT',
         minLoanAmount: null,
         maxLoanAmount: null,
         rate: null,
-        repaimentFrequence: null,
+        repaimentFrequence: 'one_time',
       },
 
       valid: {
         min: false,
         max: false,
         rate: false,
-        repaimentFrequence: false,
       }
     };
   },

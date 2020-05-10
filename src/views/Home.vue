@@ -21,7 +21,7 @@
             <td>{{ offer.minLoanAmount }} {{ offer.currency }}</td>
             <td>{{ offer.maxLoanAmount }} {{ offer.currency }}</td>
             <td>{{ offer.rate }}%</td>
-            <td>{{ offer.repaimentFrequence }}</td>
+            <td>{{ formatFrequancy(offer.repaimentFrequence) }}</td>
           </tr>
         </tbody>
       </table>
@@ -46,6 +46,14 @@ export default {
     create() {
       this.$router.push({ name: 'Offer', params: { id: 'create'} });
     },
+    formatFrequancy(key) {
+      const map = {
+        one_time: 'One time',
+        monthly: 'Monthly',
+        biweekly: 'Biweekly',
+      };
+      return map[key];
+    }
   },
   computed: {
     offers() {

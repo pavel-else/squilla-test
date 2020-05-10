@@ -4,16 +4,16 @@
     "uid": "x100",
     "minLoanAmount": 200,
     "maxLoanAmount": 400,
-    "currency": "pax",
+    "currency": "PAX",
     "rate": 6,
-    "repaimentFrequence": "oneTIme"
+    "repaimentFrequence": "one_time"
   },
   {
     "id": 234235,
     "uid": "x200",
     "minLoanAmount": 200,
     "maxLoanAmount": 300,
-    "currency": "usdc",
+    "currency": "USDC",
     "rate": 8,
     "repaimentFrequence": "monthly"
   },
@@ -22,8 +22,8 @@
     "uid": "x300",
     "minLoanAmount": 300,
     "maxLoanAmount": 500,
-    "currency": "usdc",
+    "currency": "USDC",
     "rate": 7,
-    "repaimentFrequence": "oneTIme"
+    "repaimentFrequence": "one_time"
   }
 ]

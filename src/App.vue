@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <header class="app-header">
-      <div class="app-header__logo">
-        <router-link :to="{ name: 'Home' }">
-          <img class="app-header__logo-img" src="https://id.squilla.io/assets/img/logo.png" alt="squilla.loans">
-        </router-link>
-        <div class="app-header__logo-text"><span>test</span></div>
-      </div>
+      <router-link :to="{ name: 'Home' }">
+        <div class="app-header__logo">
+            <img class="app-header__logo-img" src="https://id.squilla.io/assets/img/logo.png" alt="squilla.loans">
+            <div class="app-header__logo-text"><span>test</span></div>
+        </div>
+      </router-link>
     </header>
     <router-view/>
   </div>
@@ -18,6 +18,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  a {
+    text-decoration: none;
+  }
 }
 
 .app-header {
@@ -38,6 +41,7 @@
     border: 1px solid #ff8c51;
     display: flex;
     border-radius: 2px;
+
     span {
       padding: 4px 5px 2px;
       display: flex;
@@ -50,6 +54,7 @@
       line-height: 1;
       font-weight: bold;
       background: #ff8c51;
+
     }
   }
 
