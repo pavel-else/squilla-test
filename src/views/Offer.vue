@@ -1,8 +1,10 @@
 <template>
   <div class="page page--create">
     <div class="container">
-      <h1 class="page__title" v-if="mod === 'create'">Create offer</h1>
-      <h1 class="page__title" v-else>Update offer</h1>
+      <div class="page__wrap">
+        <h1 class="page__title" v-if="mod === 'create'">Create offer</h1>
+        <h1 class="page__title" v-else>Update offer</h1>
+      </div>
 
       <table class="table create-table">
         <tbody>
@@ -56,10 +58,12 @@
         </tbody>
       </table>
 
-      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="create" v-if="mod === 'create'">Create</button>
-      <button class="btn btn-primary" :class="!isValidForm ? 'disabled' : ''" @click="update" v-else>Update</button>
-      
-      <button class="btn btn-danger" @click="deleteOffer">Delete</button>
+      <div class="btns">
+        <button class="btn btn-primary btns__button" :class="!isValidForm ? 'disabled' : ''" @click="create" v-if="mod === 'create'">Create</button>
+        <button class="btn btn-primary btns__button" :class="!isValidForm ? 'disabled' : ''" @click="update" v-else>Update</button>
+        
+        <button class="btn btn-danger btns__button" v-if="mod === 'update'" @click="deleteOffer">Delete</button>
+      </div>
     </div>
   </div>
 </template>
@@ -73,7 +77,8 @@ export default {
     vInput
   },
   mounted() {
-    if (this.$route.params.id && this.$route.params.id === 'create') {
+    if (this.$route.params.id === 'create') {
+      this.mod = 'create';
       return;
     }
 
@@ -142,5 +147,11 @@ export default {
 
 
 <style lang="scss">
+.btns__button {
+  padding: 5px 30px;
 
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}
 </style>

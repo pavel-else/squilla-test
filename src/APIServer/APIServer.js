@@ -18,7 +18,8 @@ class APIServer {
       response.data = this.offers;
     }
     if (methodName === 'createOffer') {
-      this.offers.push(data);
+      const newOffer = { ...data, id: this.getNewId() };
+      this.offers.push(newOffer);
       response.status = 'success';
       response.data = {};
     }
@@ -43,6 +44,12 @@ class APIServer {
     }
       
     return response;
+  }
+
+  getNewId() {
+    const ids = this.offers.map((i) => i.id);
+    const maxId = Math.max(...ids);
+    return maxId + 1;
   }
 }
 

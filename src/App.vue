@@ -2,8 +2,10 @@
   <div id="app">
     <header class="app-header">
       <div class="app-header__logo">
+        <router-link :to="{ name: 'Home' }">
+          <img class="app-header__logo-img" src="https://id.squilla.io/assets/img/logo.png" alt="squilla.loans">
+        </router-link>
         <div class="app-header__logo-text"><span>test</span></div>
-        <img class="app-header__logo-img" src="https://id.squilla.io/assets/img/logo.png" alt="squilla.loans">
       </div>
     </header>
     <router-view/>
@@ -27,13 +29,11 @@
   background: #339fa6;
 
   &__logo {
-    width: 190px;
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
   }
 
   &__logo-text {
-    align-self: flex-end;
     padding: 3px;
     border: 1px solid #ff8c51;
     display: flex;
@@ -54,8 +54,9 @@
   }
 
   &__logo-img {
-    width: 150px;
+    width: 160px;
     height: auto;
+    margin: 0 12px 0 0;
   }
 }
 </style>

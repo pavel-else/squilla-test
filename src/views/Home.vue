@@ -3,7 +3,7 @@
     <div class="container">
       <div class="page__wrap">
         <h1 class="page__title">Offers</h1>
-        <button class="btn btn-outline-primary page__button-create">Create offer</button>
+        <button class="btn btn-outline-primary page__button-create" @click="create">Create offer</button>
       </div>
       <table class="table offers-table">
         <thead>
@@ -42,6 +42,9 @@ export default {
   methods: {
     edit(offerId) {
       this.$router.push({ name: 'Offer', params: { id: offerId }});
+    },
+    create() {
+      this.$router.push({ name: 'Offer', params: { id: 'create'} });
     },
   },
   computed: {
