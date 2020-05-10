@@ -6,7 +6,7 @@
     "maxLoanAmount": 400,
     "currency": "PAX",
     "rate": 6,
-    "repaimentFrequence": "one_time"
+    "repaimentFrequence": "biweekly"
   },
   {
     "id": 234235,

@@ -1,5 +1,4 @@
 <docs>
-</docs>
   <v-input 
     class="input" 
     type="email"
@@ -8,6 +7,7 @@
     v-model="email"
     @valid="isValidEmail = $event" 
   />
+</docs>
 <template>
 
 <div class="v-input">

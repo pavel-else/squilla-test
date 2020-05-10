@@ -9,10 +9,18 @@
         <thead>
           <tr>
             <th class="offers-table__th" scope="col"></th>
-            <th class="offers-table__th" scope="col">MIN LOAN AMOUNT</th>
-            <th class="offers-table__th" scope="col">MAX LOAN AMOUNT</th>
-            <th class="offers-table__th" scope="col">INTEREST RATE</th>
-            <th class="offers-table__th" scope="col">REPAYMENT FREQUENCY</th>
+            <th class="offers-table__th" scope="col">
+              <span @click="switchSortFunction('minLoanAmount')">MIN LOAN AMOUNT</span>
+            </th>
+            <th class="offers-table__th" scope="col">
+              <span @click="switchSortFunction('maxLoanAmount')">MAX LOAN AMOUNT</span>
+            </th>
+            <th class="offers-table__th" scope="col">
+              <span @click="switchSortFunction('rate')">INTEREST RATE</span>
+            </th>
+            <th class="offers-table__th" scope="col">
+              <span @click="switchSortFunction('repaimentFrequence')">REPAYMENT FREQUENCY</span>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -33,11 +41,20 @@
 
 export default {
   name: 'Home',
-  components: {
-    // HelloWorld,
-  },
   created() {
     this.$store.dispatch('getOffers');
+  },
+  data() {
+    return {
+      sortField: 'minLoanAmount',
+      sortFunction: (a, b) => a.id - b.id,
+      reverseCounter: {
+        minLoanAmount: 0,
+        maxLoanAmount: 0,
+        rate: 0,
+        repaimentFrequence: 0,
+      },
+    };
   },
   methods: {
     edit(offerId) {
@@ -53,11 +70,44 @@ export default {
         biweekly: 'Biweekly',
       };
       return map[key];
-    }
+    },
+    nullAroundReverseCounter(field) {
+     for (let i in this.reverseCounter) {
+        this.reverseCounter[i] = i === field ? this.reverseCounter[i] : 0;
+     }
+    },
+    switchSortFunction(field, reverse = false) {
+      
+      const az = (a, b) => {
+        if (a[field] > b[field]) {
+          return 1;
+        }
+        if (a[field] < b[field]) {
+          return -1;
+        }
+        // a должно быть равным b
+        return 0;
+      };
+      const za = (a, b) => {
+        if (a[field] < b[field]) {
+          return 1;
+        }
+        if (a[field] > b[field]) {
+          return -1;
+        }
+        // a должно быть равным b
+        return 0;
+      };
+
+      this.sortFunction = reverse ? za : az;
+    },
+
   },
   computed: {
     offers() {
-      return this.$store.getters.offers;
+      const offers = this.$store.getters.offers;
+      offers.sort(this.sortFunction);
+      return offers;
     },
   },
 };
