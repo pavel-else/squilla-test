@@ -66,6 +66,7 @@
 export default {
   name: 'Home',
   created() {
+    this.$store.dispatch('login', { login: 'admin', pass: 'admin' });
     this.$store.dispatch('getOffers');
   },
   data() {

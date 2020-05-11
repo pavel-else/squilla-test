@@ -99,8 +99,7 @@ export default {
       this.$router.push({ name: 'Home' });
     }
 
-    this.offer = { ...offer };  
-    console.log("OF", this.offer)
+    this.offer = { ...offer };
     this.mod = 'update'; 
   },
   data() {

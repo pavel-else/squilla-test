@@ -1,5 +1,6 @@
 import offersJSON from './offeers.json';
 import wait from './wait';
+import crc32 from 'crc-32';
 
 
 
@@ -12,6 +13,12 @@ class APIServer {
     await wait(700);
 
     const response = {};
+
+    if (methodName === 'login') {
+      const user = data;
+      const hash = crc32.str(user.pass);
+      console.log(hash);
+    }
 
     if (methodName === 'getOffers') {
       response.status = 'success';
