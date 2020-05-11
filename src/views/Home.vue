@@ -8,10 +8,10 @@
       <table class="table offers-table">
         <thead>
           <tr>
-            <th class="offers-table__th" scope="col"></th>
             <th class="offers-table__th" scope="col">
               <div class="offers-table__th-wrap">
-                <span>MIN LOAN AMOUNT</span>
+                <span class="col-title col-title--main">MIN LOAN AMOUNT</span>
+                <span class="col-title col-title--small">MIN</span>
                 <div class="arrows">
                   <div class="arrows__arrow arrows__arrow--up" @click="switchSortFunction('minLoanAmount', false)"></div>
                   <div class="arrows__arrow arrows__arrow--down" @click="switchSortFunction('minLoanAmount', true)"></div>
@@ -20,7 +20,8 @@
             </th>
             <th class="offers-table__th" scope="col">
               <div class="offers-table__th-wrap">
-                <span>MAX LOAN AMOUNT</span>
+                <span class="col-title col-title--main">MAX LOAN AMOUNT</span>
+                <span class="col-title col-title--small">MAX</span>
                 <div class="arrows">
                   <div class="arrows__arrow arrows__arrow--up" @click="switchSortFunction('maxLoanAmount', false)"></div>
                   <div class="arrows__arrow arrows__arrow--down" @click="switchSortFunction('maxLoanAmount', true)"></div>
@@ -29,7 +30,8 @@
             </th>
             <th class="offers-table__th" scope="col">
               <div class="offers-table__th-wrap">
-                <span>INTEREST RATE</span>
+                <span class="col-title col-title--main">INTEREST RATE</span>
+                <span class="col-title col-title--small">RATE</span>
                 <div class="arrows">
                   <div class="arrows__arrow arrows__arrow--up" @click="switchSortFunction('rate', false)"></div>
                   <div class="arrows__arrow arrows__arrow--down" @click="switchSortFunction('rate', true)"></div>
@@ -38,7 +40,8 @@
             </th>
             <th class="offers-table__th" scope="col">
               <div class="offers-table__th-wrap">
-                <span>REPAYMENT FREQUENCY</span>
+                <span class="col-title col-title--main">REPAYMENT FREQUENCY</span>
+                <span class="col-title col-title--small">FREQ.</span>
                 <div class="arrows">
                   <div class="arrows__arrow arrows__arrow--up" @click="switchSortFunction('repaimentFrequence', false)"></div>
                   <div class="arrows__arrow arrows__arrow--down" @click="switchSortFunction('repaimentFrequence', true)"></div>
@@ -48,8 +51,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="offers-table__tr" v-for="(offer, index) in offers" :key="offer.id" @click="edit(offer.id)">
-            <th scope="row">{{ index + 1 }}</th>
+          <tr class="offers-table__tr" v-for="(offer) in offers" :key="offer.id" @click="edit(offer.id)">
             <td>{{ offer.minLoanAmount }} {{ offer.currency }}</td>
             <td>{{ offer.maxLoanAmount }} {{ offer.currency }}</td>
             <td>{{ offer.rate }}%</td>
@@ -162,7 +164,23 @@ export default {
       cursor: pointer;
     }
   }
+  td {
+    white-space: nowrap;
+  }
 }
+
+.col-title--small {
+  display: none;
+}
+@media screen and(max-width: 600px) {
+  .col-title--main {
+    display: none;
+  }
+  .col-title--small {
+    display: inline;
+  }
+}
+
 
 .arrows {
   margin-left: 5px;
