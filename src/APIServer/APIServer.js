@@ -1,23 +1,40 @@
-import offersJSON from './offeers.json';
+import offersJSON from './offers.json';
+import usersJSON from './users.json';
 import wait from './wait';
-import crc32 from 'crc-32';
+import sha256 from 'sha256';
 
 
 
 class APIServer {
   constructor() {
-    this.offers = offersJSON;    
+    this.offers = offersJSON;
+    this.users = usersJSON;  
   }
 
   async request(methodName, data) {
     await wait(700);
 
-    const response = {};
+    const response = {
+      status: '',
+      data: {},
+    };
 
     if (methodName === 'login') {
-      const user = data;
-      const hash = crc32.str(user.pass);
-      console.log(hash);
+      const login = data.login;
+      const hash = sha256(data.pass);
+
+      const user = this.users.find((i) => i.login === login);
+
+      if (!user) {
+        response.status = 'undefined_user';
+        response.data = {};
+      } else if (user.hash !== hash) {
+        response.status = "password_error";
+        response.data = hash;
+      } else {
+        response.status = 'success';
+        response.data = { token: hash };
+      }
     }
 
     if (methodName === 'getOffers') {
