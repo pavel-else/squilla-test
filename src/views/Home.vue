@@ -59,6 +59,26 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="page__pagination" v-if="offers && offers.length">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item">
+              <span class="page-link" @click="pageCount === 1 ? page -= 0 : page -= 1">Previous</span>
+            </li>
+
+            <li class="page-item" v-for="num in pageCount" :key="num">
+              <span class="page-link" @click="page = num" :class="num === page ? 'active' : ''">
+                {{ num }}
+              </span>
+            </li>
+
+            <li class="page-item">
+              <span class="page-link" @click="pageCount === page ? page += 0 : page += 1">Next</span>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
 </template>
@@ -75,6 +95,7 @@ export default {
     return {
       sortField: 'minLoanAmount',
       sortFunction: (a, b) => a.id - b.id,
+      page: 1,
     };
   },
   methods: {
@@ -105,7 +126,6 @@ export default {
         if (a[field] < b[field]) {
           return -1;
         }
-        // a должно быть равным b
         return 0;
       };
       const za = (a, b) => {
@@ -115,7 +135,6 @@ export default {
         if (a[field] > b[field]) {
           return -1;
         }
-        // a должно быть равным b
         return 0;
       };
 
@@ -125,27 +144,37 @@ export default {
   },
   computed: {
     offers() {
-      const offers = this.$store.getters.offers;
-      offers.sort(this.sortFunction);
-      return offers;
+      const offers = [ ...this.$store.getters.offers];
+      const slice = offers.slice(0 + 10 * (this.page - 1), 10 * this.page);
+      slice.sort(this.sortFunction);
+      return slice;
     },
+    pageCount() {
+      return parseInt(this.$store.getters.offers.length / 10) + 1;
+    }
   },
 };
 </script>
 
 <style lang="scss">
-.page__wrap {
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+.page {
+  &__wrap {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   &__title {
     font-size: 24px;
   }
   &__button-create {
     height: 35px;
     padding: 0 15px;
+  }
+  &__pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -205,6 +234,12 @@ export default {
 
   &__arrow--down {
     transform: rotate(-135deg);
+  }
+}
+
+.pagination {
+  .active {
+    background: #e9ecef;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 [
   {
-    "id": 123123,
+    "id": 1263623,
     "uid": "x100",
     "minLoanAmount": 200,
     "maxLoanAmount": 400,
@@ -9,7 +9,7 @@
     "repaimentFrequence": "biweekly"
   },
   {
-    "id": 234235,
+    "id": 2343435,
     "uid": "x200",
     "minLoanAmount": 200,
     "maxLoanAmount": 300,
@@ -18,7 +18,142 @@
     "repaimentFrequence": "monthly"
   },
   {
-    "id": 364364,
+    "id": 36443364,
+    "uid": "x300",
+    "minLoanAmount": 300,
+    "maxLoanAmount": 500,
+    "currency": "USDT",
+    "rate": 7,
+    "repaimentFrequence": "one_time"
+  },
+  {
+    "id": 12367123,
+    "uid": "x100",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 400,
+    "currency": "PAX",
+    "rate": 6,
+    "repaimentFrequence": "biweekly"
+  },
+  {
+    "id": 23426235,
+    "uid": "x200",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 300,
+    "currency": "USDS",
+    "rate": 8,
+    "repaimentFrequence": "monthly"
+  },
+  {
+    "id": 36475364,
+    "uid": "x300",
+    "minLoanAmount": 300,
+    "maxLoanAmount": 500,
+    "currency": "USDT",
+    "rate": 7,
+    "repaimentFrequence": "one_time"
+  },
+  {
+    "id": 12324023,
+    "uid": "x100",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 400,
+    "currency": "PAX",
+    "rate": 6,
+    "repaimentFrequence": "biweekly"
+  },
+  {
+    "id": 23411235,
+    "uid": "x200",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 300,
+    "currency": "USDS",
+    "rate": 8,
+    "repaimentFrequence": "monthly"
+  },
+  {
+    "id": 36464364,
+    "uid": "x300",
+    "minLoanAmount": 300,
+    "maxLoanAmount": 500,
+    "currency": "USDT",
+    "rate": 7,
+    "repaimentFrequence": "one_time"
+  },
+  {
+    "id": 12324123,
+    "uid": "x100",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 400,
+    "currency": "PAX",
+    "rate": 6,
+    "repaimentFrequence": "biweekly"
+  },
+  {
+    "id": 23874235,
+    "uid": "x200",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 300,
+    "currency": "USDS",
+    "rate": 8,
+    "repaimentFrequence": "monthly"
+  },
+  {
+    "id": 36412364,
+    "uid": "x300",
+    "minLoanAmount": 300,
+    "maxLoanAmount": 500,
+    "currency": "USDT",
+    "rate": 7,
+    "repaimentFrequence": "one_time"
+  },
+  {
+    "id": 12312387,
+    "uid": "x100",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 400,
+    "currency": "PAX",
+    "rate": 6,
+    "repaimentFrequence": "biweekly"
+  },
+  {
+    "id": 23423519,
+    "uid": "x200",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 300,
+    "currency": "USDS",
+    "rate": 8,
+    "repaimentFrequence": "monthly"
+  },
+  {
+    "id": 36436465,
+    "uid": "x300",
+    "minLoanAmount": 300,
+    "maxLoanAmount": 500,
+    "currency": "USDT",
+    "rate": 7,
+    "repaimentFrequence": "one_time"
+  },
+  {
+    "id": 12312397,
+    "uid": "x100",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 400,
+    "currency": "PAX",
+    "rate": 6,
+    "repaimentFrequence": "biweekly"
+  },
+  {
+    "id": 23423512,
+    "uid": "x200",
+    "minLoanAmount": 200,
+    "maxLoanAmount": 300,
+    "currency": "USDS",
+    "rate": 8,
+    "repaimentFrequence": "monthly"
+  },
+  {
+    "id": 36436409,
     "uid": "x300",
     "minLoanAmount": 300,
     "maxLoanAmount": 500,

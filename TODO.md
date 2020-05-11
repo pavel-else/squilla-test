@@ -1,12 +1,14 @@
 # squilla-test
 
 ## todo
-- Постраничная навигация. Max = 10
 - deploy
-- update main page to mobile
+- add footer with github link
+- get offers by only uid
 
 
 ## Complete
+- Постраничная навигация. Max = 10
+- update main page to mobile
 - Основная таблица. Сортировка
 - Доступ к страницам
 - Авторизация
