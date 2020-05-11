@@ -7,10 +7,32 @@
             <div class="app-header__logo-text"><span>test</span></div>
         </div>
       </router-link>
+
+      <div class="app-header__sign-block">
+        <router-link class="app-header__sign" v-if="!isAuth" :to="{ name: 'Login' }">Login</router-link>
+        <span class="app-header__sign" v-else @click="logout">Logout</span>
+      </div>
     </header>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    isAuth() {
+      return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods: {
+    logout() {
+      console.log('logout')
+      this.$store.dispatch('logout');
+      this.$router.push({ name: 'Login' });
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -29,6 +51,7 @@
   padding: 0 30px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: #339fa6;
 
   &__logo {
@@ -62,6 +85,16 @@
     width: 160px;
     height: auto;
     margin: 0 12px 0 0;
+  }
+
+  &__sign {
+    display: block;
+    color: rgba(255, 255, 255, .8);
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+      cursor: pointer;
+    }
   }
 }
 </style>
