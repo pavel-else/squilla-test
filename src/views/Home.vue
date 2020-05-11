@@ -10,16 +10,40 @@
           <tr>
             <th class="offers-table__th" scope="col"></th>
             <th class="offers-table__th" scope="col">
-              <span @click="switchSortFunction('minLoanAmount')">MIN LOAN AMOUNT</span>
+              <div class="offers-table__th-wrap">
+                <span>MIN LOAN AMOUNT</span>
+                <div class="arrows">
+                  <div class="arrows__arrow arrows__arrow--up" @click="switchSortFunction('minLoanAmount', false)"></div>
+                  <div class="arrows__arrow arrows__arrow--down" @click="switchSortFunction('minLoanAmount', true)"></div>
+                </div>
+              </div>
             </th>
             <th class="offers-table__th" scope="col">
-              <span @click="switchSortFunction('maxLoanAmount')">MAX LOAN AMOUNT</span>
+              <div class="offers-table__th-wrap">
+                <span>MAX LOAN AMOUNT</span>
+                <div class="arrows">
+                  <div class="arrows__arrow arrows__arrow--up" @click="switchSortFunction('maxLoanAmount', false)"></div>
+                  <div class="arrows__arrow arrows__arrow--down" @click="switchSortFunction('maxLoanAmount', true)"></div>
+                </div>
+              </div>
             </th>
             <th class="offers-table__th" scope="col">
-              <span @click="switchSortFunction('rate')">INTEREST RATE</span>
+              <div class="offers-table__th-wrap">
+                <span>INTEREST RATE</span>
+                <div class="arrows">
+                  <div class="arrows__arrow arrows__arrow--up" @click="switchSortFunction('rate', false)"></div>
+                  <div class="arrows__arrow arrows__arrow--down" @click="switchSortFunction('rate', true)"></div>
+                </div>
+              </div>
             </th>
             <th class="offers-table__th" scope="col">
-              <span @click="switchSortFunction('repaimentFrequence')">REPAYMENT FREQUENCY</span>
+              <div class="offers-table__th-wrap">
+                <span>REPAYMENT FREQUENCY</span>
+                <div class="arrows">
+                  <div class="arrows__arrow arrows__arrow--up" @click="switchSortFunction('repaimentFrequence', false)"></div>
+                  <div class="arrows__arrow arrows__arrow--down" @click="switchSortFunction('repaimentFrequence', true)"></div>
+                </div>
+              </div>
             </th>
           </tr>
         </thead>
@@ -48,12 +72,6 @@ export default {
     return {
       sortField: 'minLoanAmount',
       sortFunction: (a, b) => a.id - b.id,
-      reverseCounter: {
-        minLoanAmount: 0,
-        maxLoanAmount: 0,
-        rate: 0,
-        repaimentFrequence: 0,
-      },
     };
   },
   methods: {
@@ -76,9 +94,8 @@ export default {
         this.reverseCounter[i] = i === field ? this.reverseCounter[i] : 0;
      }
     },
-    switchSortFunction(field, reverse = false) {
-      
-      const az = (a, b) => {
+    switchSortFunction(field, reverse) {
+        const az = (a, b) => {
         if (a[field] > b[field]) {
           return 1;
         }
@@ -119,25 +136,56 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &__title {
+    font-size: 24px;
+  }
+  &__button-create {
+    height: 35px;
+    padding: 0 15px;
+  }
 }
 
-.page__title {
-  font-size: 24px;
-}
-.page__button-create {
-  height: 35px;
-  padding: 0 15px;
-}
 
 .offers-table {
   &__th {
     font-size: 12px;
+  }
+  &__th-wrap {
+    display: flex;
+    align-items: center;
   }
   &__tr {
     &:hover {
       background: lightgray;
       cursor: pointer;
     }
+  }
+}
+
+.arrows {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+
+  &__arrow {
+    display: block;
+
+    width: 6px;
+    height: 6px;
+
+    border-left: 2px solid lightgray;
+    border-top: 2px solid lightgray;
+
+    transform: rotate(45deg);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__arrow--down {
+    transform: rotate(-135deg);
   }
 }
 </style>

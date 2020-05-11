@@ -13,7 +13,7 @@
     "uid": "x200",
     "minLoanAmount": 200,
     "maxLoanAmount": 300,
-    "currency": "USDC",
+    "currency": "USDS",
     "rate": 8,
     "repaimentFrequence": "monthly"
   },
@@ -22,7 +22,7 @@
     "uid": "x300",
     "minLoanAmount": 300,
     "maxLoanAmount": 500,
-    "currency": "USDC",
+    "currency": "USDT",
     "rate": 7,
     "repaimentFrequence": "one_time"
   }

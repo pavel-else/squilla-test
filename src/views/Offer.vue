@@ -100,6 +100,7 @@ export default {
     }
 
     this.offer = { ...offer };  
+    console.log("OF", this.offer)
     this.mod = 'update'; 
   },
   data() {
