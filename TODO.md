@@ -3,6 +3,7 @@
 ## todo
 - Постраничная навигация. Max = 10
 - deploy
+- update main page to mobile
 
 
 ## Complete

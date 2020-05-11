@@ -46,6 +46,7 @@ export default {
 }
 
 .app-header {
+  width: 100%;
   height: 70px;
   margin: 0 0 30px;
   padding: 0 30px;
